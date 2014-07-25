@@ -1,5 +1,6 @@
 import math
 from datetime import datetime
+from decimal import *
 
 from data_types import (Header, FileControl, BatchHeader, BatchControl, EntryDetail)
 
@@ -69,7 +70,7 @@ class AchFile(object):
                 entry.check_digit = record['routing_number'][8]
 
             entry.dfi_acnt_num = record['account_number']
-            entry.amount = int(round(float(record['amount']), 2) * 100)
+            entry.amount = int(Decimal(record['amount']) * 100)
             entry.ind_name = record['name'].upper()[:22]
             entry.trace_num = self.settings['immediate_dest'][:8] + entry.validate_numeric_field(entry_counter, 7)
 
@@ -159,7 +160,7 @@ class AchFile(object):
     def get_entry_desc(self, std_ent_cls_code):
 
         if std_ent_cls_code == 'PPD':
-            entry_desc = 'PAYROLL'
+            entry_desc = 'KASH250614'
         elif std_ent_cls_code == 'CCD':
             entry_desc = 'DUES'
         else:
