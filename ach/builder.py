@@ -29,13 +29,12 @@ class AchFile(object):
 
         self.batches = list()
 
-    def add_batch(self, std_ent_cls_code, batch_entries=list(), credits=True, debits=False):
+    def add_batch(self, std_ent_cls_code, batch_entries=list(), credits=True, debits=False, entry_desc=None):
         """
         Use this to add batches to the file. For valid std_ent_cls_codes see:
         http://en.wikipedia.org/wiki/Automated_Clearing_House#SEC_codes
         """
-
-        entry_desc = self.get_entry_desc(std_ent_cls_code)
+        entry_desc = entry_desc or self.get_entry_desc(std_ent_cls_code)
 
         batch_count = len(self.batches) + 1
 
