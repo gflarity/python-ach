@@ -197,7 +197,7 @@ class FileControl(Ach):
         Initializes all the values we need for our file control record
         """
 
-        debit_amount = int((100 * debit_amount))
+        #debit_amount = int((100 * debit_amount))
         # Fix 1/4/12 rob@payperks.com
         # credit_amount = int((100 * credit_amount))
 
